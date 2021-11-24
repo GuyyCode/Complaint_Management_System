@@ -16,6 +16,7 @@ namespace Complaint_Management_System.Models.Entities
         [DisplayName("New Complaint")]
         [StringLength(800)]
         public string Description { get; set; }
+        public DateTime Complaint_Date { get; set; }
 
         public int StudentID { get; set; }
 
