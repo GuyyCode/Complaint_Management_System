@@ -44,7 +44,10 @@ namespace Complaint_Management_System.Controllers
             {
                 //save stuff from form to database
                 var _complaint = new Complaint { Complaint_Date = DateTime.Now, Description = model.Description,  StudentNo = User.Identity.Name };
-             
+
+                _cmsDataDbContext.Complaints.Add(_complaint);
+                _cmsDataDbContext.SaveChanges();
+
                 return RedirectToAction("Index","Complain");
                 //return View();
             }
