@@ -16,12 +16,25 @@ namespace Complaint_Management_System.Controllers
         {
             _cmsDataDbContext = cmsDataDbContext;
         }
-        
+        private List<Complaint> GetComplaints(string StudentNo)
+        {
+            var toReturn = new List<Complaint>();
+
+            toReturn = _cmsDataDbContext.Complaints.Where(a => a.StudentNo == StudentNo).ToList();
+
+            return toReturn;
+        }
+
+        public ActionResult Index()
+        {
+            return View();
+        }
+
         //Get
         public ActionResult NewComplaint()
         {
             return View();
-        }
+        }      
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -32,7 +45,7 @@ namespace Complaint_Management_System.Controllers
                 //save stuff from form to database
                 var _complaint = new Complaint { Complaint_Date = DateTime.Now, Description = model.Description,  StudentNo = User.Identity.Name };
              
-                return RedirectToAction("","");
+                return RedirectToAction("Index","Complain");
                 //return View();
             }
             catch(Exception ex)

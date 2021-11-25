@@ -109,8 +109,9 @@ namespace Complaint_Management_System.Controllers
         public async Task<ActionResult> LogOff()
         {
             await _signInManager.SignOutAsync();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Account", "Login");
         }
+        
 
         private void AddErrors(IdentityResult result)
         {

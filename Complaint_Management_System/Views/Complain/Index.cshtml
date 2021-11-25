@@ -1,0 +1,23 @@
+﻿@model Complaint_Management_System.Models.complaintsViewmodel
+@{
+}
+
+
+<h2>List of Complaints</h2>
+
+
+<ul>
+    @if(Model != null)
+    {
+    @foreach (var Comp in Model.Complaints)
+    {
+        <li>
+            @Comp.Complaint_Date;
+        </li>
+        <li>
+            @Comp.Description;
+        </li>       
+    }
+    }
+</ul>
+

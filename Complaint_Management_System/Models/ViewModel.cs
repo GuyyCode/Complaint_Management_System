@@ -68,10 +68,11 @@ namespace Complaint_Management_System.Models
     //}
 
 
-public class AnnouncementViewmodel
+    public class AnnouncementViewmodel
     {
         public List<Announcement> announcements { get; set; }
     }
+    
     public class complaintsViewmodel
     {
         public List<Complaint> Complaints { get; set; }
