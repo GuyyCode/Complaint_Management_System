@@ -65,4 +65,9 @@ namespace Complaint_Management_System.Models
     //    public Boolean Marked { get; set; }
     //    public List<Attendance> Attendances { get; set; }
     //}
+
+
+
+
+
 }

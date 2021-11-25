@@ -25,10 +25,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Content Update="Views\Home\New_Complaint.cshtml">
-	    <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-	    <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-	  </Content>
+	  <Folder Include="Views\ViewModel\" />
 	</ItemGroup>
 
 </Project>
