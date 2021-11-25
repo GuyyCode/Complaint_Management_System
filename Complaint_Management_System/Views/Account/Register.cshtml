@@ -2,7 +2,11 @@
 @model Complaint_Management_System.Models.RegisterViewModel
 @using Complaint_Management_System.Models.Enum
 @using Complaint_Management_System.Extensions
-@{ ViewBag.Title = "Register"; }
+
+@{ 
+    ViewBag.Title = "Register";
+    var roles = (List<IdentityRole>)ViewData["roles"];
+}
 
 <section class="content-wrapper menu-content">
 </section>
@@ -13,15 +17,25 @@
                 <div class="form-horizontal">
                     <h3>Create A New Account</h3>
                     <hr />
-
                     <div class="form-group">
                         <div class="row">
                             <label class="control-label col-md-2" for="UserName">
-                                @Html.LabelFor(m => m.StudentNo)
+                                @Html.LabelFor(m => m.UserRole)
                             </label>
                             <div class="col-sm-9 col-md-4">
-                                @Html.TextBoxFor(m => m.StudentNo, new { @class = "form-control", @autocomplete = "off" })
-                                @Html.ValidationMessageFor(m => m.StudentNo)
+                                    <select asp-for="@Model.UserRole" class="form-control" asp-items='new SelectList(roles,"Id","Name")'></select>
+                                    @Html.ValidationMessageFor(m => m.UserRole)
+                            </div>
+                            <span class="required col-md-1"> * </span>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <label class="control-label col-md-2" for="UserName">
+                                @Html.LabelFor(m => m.StudentStaffNo)
+                            </label>
+                            <div class="col-sm-9 col-md-4">
+                                @Html.TextBoxFor(m => m.StudentStaffNo, new { @class = "form-control", @autocomplete = "off" })
+                                @Html.ValidationMessageFor(m => m.StudentStaffNo)
                             </div>
                             <span class="required col-md-1"> * </span>
                         </div>
@@ -50,22 +64,11 @@
                         <br />
                         <div class="row">
                             <label class="control-label col-md-2" for="Name">
-                                @Html.LabelFor(m => m.Name)
+                                @Html.LabelFor(m => m.FullName)
                             </label>
                             <div class="col-sm-9 col-md-4">
-                                @Html.TextBoxFor(m => m.Name, new { @class = "form-control", @autocomplete = "off" })
-                                @Html.ValidationMessageFor(m => m.Name)
-                            </div>
-                            <span class="required col-md-1"> * </span>
-                        </div>
-                        <br />
-                        <div class="row">
-                            <label class="control-label col-md-2" for="LastName">
-                                @Html.LabelFor(m => m.LastName)
-                            </label>
-                            <div class="col-sm-9 col-md-4">
-                                @Html.TextBoxFor(m => m.LastName, new { @class = "form-control", @autocomplete = "off" })
-                                @Html.ValidationMessageFor(m => m.LastName)
+                                @Html.TextBoxFor(m => m.FullName, new { @class = "form-control", @autocomplete = "off" })
+                                @Html.ValidationMessageFor(m => m.FullName)
                             </div>
                             <span class="required col-md-1"> * </span>
                         </div>
@@ -77,17 +80,6 @@
                             <div class="col-sm-9 col-md-4">
                                 @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @autocomplete = "off" })
                                 @Html.ValidationMessageFor(m => m.Email)
-                            </div>
-                            <span class="required col-md-1"> * </span>
-                        </div>
-                        <br />
-                        <div class="row">
-                            <label class="control-label col-md-2" for="IDNO">
-                                @Html.LabelFor(m => m.IDNO)
-                            </label>
-                            <div class="col-sm-9 col-md-4">
-                                @Html.TextBoxFor(m => m.IDNO, new { @class = "form-control", @autocomplete = "off" })
-                                @Html.ValidationMessageFor(m => m.IDNO)
                             </div>
                             <span class="required col-md-1"> * </span>
                         </div>

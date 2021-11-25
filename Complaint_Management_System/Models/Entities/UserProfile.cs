@@ -18,9 +18,14 @@ namespace Complaint_Management_System.Models.Entities
         public string UserId { get; set; }
 
         [StringLength(100)]
-        public string Name { get; set; }
-        [StringLength(100)]
-        public string LastName { get; set; }
+        public string FullName { get; set; }
+
         public Faculty Faculty { get; set; }
+
+        [StringLength(100)]
+        public string UserType { get; set; }
+
+        [StringLength(100)]
+        public string StaffStudentNo { get; set; }
     }
 }

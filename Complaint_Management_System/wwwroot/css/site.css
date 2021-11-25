@@ -73,3 +73,7 @@ body {
 .required {
     color: red !important;
 }
+
+#body {
+    background-color: #d7cccc;
+}

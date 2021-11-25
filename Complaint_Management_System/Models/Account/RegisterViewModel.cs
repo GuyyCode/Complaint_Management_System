@@ -9,8 +9,12 @@ namespace Complaint_Management_System.Models
     public class RegisterViewModel
     {
         [Required]
-        [Display(Name = "Student Number")]
-        public string StudentNo { get; set; }
+        [Display(Name = "User Type")]
+        public string UserRole { get; set; }
+
+        [Required]
+        [Display(Name = "Student/Staff Number")]
+        public string StudentStaffNo { get; set; }
 
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
@@ -31,17 +35,8 @@ namespace Complaint_Management_System.Models
         public string Email { get; set; }
 
         [Required]
-        [EmailAddress]
-        [Display(Name = "ID Number")]
-        public string IDNO { get; set; }
-
-        [Required]
-        [Display(Name = "Name")]
-        public string Name { get; set; }
-
-        [Required]
-        [Display(Name = "Last name")]
-        public string LastName { get; set; }
+        [Display(Name = "Full Name")]
+        public string FullName { get; set; }
 
         [Required]
         [Display(Name = "Faculty")]

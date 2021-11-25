@@ -41,6 +41,7 @@ namespace Complaint_Management_System.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
+            ViewData["roles"] = _roleManager.Roles.Where(a => a.Name != "Admin").ToList();
             return View();
         }
 
@@ -52,7 +53,7 @@ namespace Complaint_Management_System.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new IdentityUser { UserName = model.StudentNo, Email = model.Email };
+                var user = new IdentityUser { UserName = model.StudentStaffNo, Email = model.Email };
 
                 var result = await addNewUserRegistration(model).ConfigureAwait(false);
                
@@ -133,10 +134,16 @@ namespace Complaint_Management_System.Controllers
         {
             try
             {
-                var result = await _userManager.CreateAsync(new IdentityUser { UserName = model.StudentNo, Email = model.Email }, model.Password).ConfigureAwait(false);
+                var role = _roleManager.FindByIdAsync(model.UserRole).Result;
+
+                var user = new IdentityUser { UserName = model.StudentStaffNo, Email = model.Email };
+
+                var result = await _userManager.CreateAsync(user, model.Password).ConfigureAwait(false);
 
                 if (result.Succeeded)
                 {
+                    await _userManager.AddToRoleAsync(user, role.Name);
+
                     bool addedProfile = AddNewUserProfile(model);
 
                     return addedProfile;
@@ -155,16 +162,17 @@ namespace Complaint_Management_System.Controllers
         {
             try
             {
-                var _user = _applicationDbContext.Users.Where(p => p.UserName == model.StudentNo).SingleOrDefault();
+                var _user = _applicationDbContext.Users.Where(p => p.UserName == model.StudentStaffNo).SingleOrDefault();
 
                 if (_user != null)
                 {
                     var _newUserProfile = new UserProfile
                     {
                         UserId = _user.Id,
-                        Name = model.Name,
-                        LastName = model.LastName,
+                        FullName = model.FullName,
                         Faculty = GetFaculty(model.FacultyID),
+                        UserType = model.UserRole,
+                        StaffStudentNo = model.StudentStaffNo
                     };
 
                     _cmsDataDbContext.UserProfiles.Add(_newUserProfile);

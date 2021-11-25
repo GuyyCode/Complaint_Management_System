@@ -9,13 +9,13 @@ namespace Complaint_Management_System.Models.Enum
     public enum Faculty
     {
         [Description("Accounting And Informatics")]
-        AccountingAndInformatics = 0,
+        AccountingAndInformatics = 1,
         [Description("Applied Sciences")]
-        AppliedSciences = 1,
+        AppliedSciences = 2,
         [Description("Arts And Design")]
-        ArtsAndDesign = 2,
+        ArtsAndDesign = 3,
         [Description("Engineering And Built Environment")]
-        EngineeringAndBuiltEnvironment = 3,
+        EngineeringAndBuiltEnvironment = 4,
         [Description("Health Sciences")]
         HealthSciences = 5,
         [Description("Management Sciences")]

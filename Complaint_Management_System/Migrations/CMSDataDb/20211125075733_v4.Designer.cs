@@ -3,14 +3,16 @@ using Complaint_Management_System.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Complaint_Management_System.Migrations.CMSDataDb
 {
     [DbContext(typeof(CMSDataDbContext))]
-    partial class CMSDataDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211125075733_v4")]
+    partial class v4
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -32,7 +34,7 @@ namespace Complaint_Management_System.Migrations.CMSDataDb
                         .HasColumnType("nvarchar(100)")
                         .HasMaxLength(100);
 
-                    b.Property<string>("StaffStudentNo")
+                    b.Property<string>("StudentNo")
                         .HasColumnType("nvarchar(100)")
                         .HasMaxLength(100);
 
