@@ -5,27 +5,35 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Complaint_Management_System.Models.Entities;
+using Complaint_Management_System.Data;
 
 namespace Complaint_Management_System.Controllers
 {
-    public class AnnouncementController : Controller
+    public class AnnouncementController : BaseController
     {
+        private CMSDataDbContext _cmsDataDbContext;
+
+        public AnnouncementController(CMSDataDbContext cmsDataDbContext)
+        {
+            _cmsDataDbContext = cmsDataDbContext;
+        }
+
+        public ActionResult GetStaffAnnouncements(string StaffID) 
+        {
+            return View(GetAnnouncements(StaffID));
+        }
+
+        private List<Announcement> GetAnnouncements(string StaffID) 
+        {
+            var toReturn = new List<Announcement>();
+
+            toReturn = _cmsDataDbContext.Announcements.Where(a => a.StaffID == StaffID).ToList();
+
+            return toReturn;
+        }
         // GET: AnnouncementController
-        public ActionResult Index()
+        public ActionResult NewAnnouncement()
         {
-            return View();
-        }
-
-        // GET: AnnouncementController/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        // GET: AnnouncementController/Create
-        public ActionResult Create()
-        {
-
             return View();
         }
 
@@ -35,71 +43,20 @@ namespace Complaint_Management_System.Controllers
         {
             try
             {
-                return RedirectToAction("");
+                //save stuff from form to database
+                var _complaint = new Announcement { Announcement_Date = DateTime.Now, Announcement_Description = model.Announcement_Description, StaffID = User.Identity.Name };
+
+                return RedirectToAction("", "");
+                //return View();
             }
-            catch
+            catch (Exception ex)
             {
-                return View();
+                throw ex;
             }
         }
 
 
 
-        // POST: AnnouncementController/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: AnnouncementController/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: AnnouncementController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: AnnouncementController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: AnnouncementController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
         }
     }
-}
+

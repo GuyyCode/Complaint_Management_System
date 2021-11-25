@@ -18,7 +18,7 @@ namespace Complaint_Management_System.Models.Entities
         public string Description { get; set; }
         public DateTime Complaint_Date { get; set; }
 
-        public int StudentID { get; set; }
+        public string StudentNo { get; set; }
 
     }
 }

@@ -17,7 +17,7 @@ namespace Complaint_Management_System.Models.Entities
         [StringLength(800)]
         public string Announcement_Description { get; set; }
         public DateTime Announcement_Date { get; set; }
-        public int StaffID { get; set; }
+        public string StaffID { get; set; }
         public int FacultyID { get; set; }
 
     }

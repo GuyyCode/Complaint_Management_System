@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Complaint_Management_System.Models.Entities;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
@@ -67,6 +68,14 @@ namespace Complaint_Management_System.Models
     //}
 
 
+public class AnnouncementViewmodel
+    {
+        public List<Announcement> announcements { get; set; }
+    }
+    public class complaintsViewmodel
+    {
+        public List<Complaint> Complaints { get; set; }
+    }
 
 
 

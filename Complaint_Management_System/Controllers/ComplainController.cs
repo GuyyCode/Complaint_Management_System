@@ -1,4 +1,5 @@
-﻿using Complaint_Management_System.Models.Entities;
+﻿using Complaint_Management_System.Data;
+using Complaint_Management_System.Models.Entities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -8,50 +9,19 @@ using System.Threading.Tasks;
 
 namespace Complaint_Management_System.Controllers
 {
-    public class ComplainController : Controller
+    public class ComplainController : BaseController
     {
-        // GET: ComplainController
-        public ActionResult Index()
+        public CMSDataDbContext  _cmsDataDbContext  { get; set; }
+        public ComplainController(CMSDataDbContext cmsDataDbContext) 
+        {
+            _cmsDataDbContext = cmsDataDbContext;
+        }
+        
+        //Get
+        public ActionResult NewComplaint()
         {
             return View();
         }
-
-        // GET: ComplainController/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        // GET: ComplainController/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: ComplainController/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: ComplainController/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: ComplainController/Edit/5
-
-
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -59,50 +29,15 @@ namespace Complaint_Management_System.Controllers
         {
             try
             {
-                return RedirectToAction("");
+                //save stuff from form to database
+                var _complaint = new Complaint { Complaint_Date = DateTime.Now, Description = model.Description,  StudentNo = User.Identity.Name };
+             
+                return RedirectToAction("","");
+                //return View();
             }
-            catch
+            catch(Exception ex)
             {
-                return View();
-            }
-        }
-
-
-
-
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: ComplainController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: ComplainController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
+                throw ex;
             }
         }
     }
