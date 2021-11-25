@@ -25,7 +25,7 @@
                 @Html.LabelFor(m => m.Complaint_Date)
             </label>
             <div class="col-sm-9 col-md-4">
-                @Html.PasswordFor(m => m.Complaint_Date, new { @class = "form-control", @autocomplete = "off" })
+                @Html.TextBoxFor(m => m.Complaint_Date, new { @class = "form-control", @autocomplete = "off" })
                 @Html.ValidationMessageFor(m => m.Complaint_Date)
             </div>
             <span class="required col-md-1"> * </span>
