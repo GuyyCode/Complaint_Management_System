@@ -14,5 +14,10 @@ namespace Complaint_Management_System.Controllers
         {
             return View();
         }
+
+        public IActionResult StuffIndex()
+        {
+            return View();
+        }
     }
 }

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Complaint_Management_System.Models.Entities;
 using Complaint_Management_System.Data;
+using Complaint_Management_System.Models;
 
 namespace Complaint_Management_System.Controllers
 {
@@ -31,10 +32,26 @@ namespace Complaint_Management_System.Controllers
 
             return toReturn;
         }
+
+        private AnnouncementViewmodel GetStaffAnnouncement(string StaffID)
+        {
+            var toReturn = new AnnouncementViewmodel
+            {
+                announcements = GetAnnouncements(StaffID)
+            };
+
+            return toReturn;
+        }
+
+        public ActionResult Index()
+        {
+            return View(GetStaffAnnouncement(User.Identity.Name));
+        }
+
         // GET: AnnouncementController
         public ActionResult NewAnnouncement()
         {
-            return View();
+            return View("Announcements");
         }
 
         [HttpPost]
@@ -44,9 +61,11 @@ namespace Complaint_Management_System.Controllers
             try
             {
                 //save stuff from form to database
-                var _complaint = new Announcement { Announcement_Date = DateTime.Now, Announcement_Description = model.Announcement_Description, StaffID = User.Identity.Name };
+                var announcement = new Announcement { Announcement_Date = DateTime.Now, Announcement_Description = model.Announcement_Description, StaffID = User.Identity.Name };
+                _cmsDataDbContext.Announcements.Add(announcement);
+                _cmsDataDbContext.SaveChanges();
 
-                return RedirectToAction("", "");
+                return RedirectToAction("Index", "Announcement");
                 //return View();
             }
             catch (Exception ex)

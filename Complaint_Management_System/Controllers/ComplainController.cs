@@ -1,4 +1,5 @@
 ﻿using Complaint_Management_System.Data;
+using Complaint_Management_System.Models;
 using Complaint_Management_System.Models.Entities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -25,9 +26,19 @@ namespace Complaint_Management_System.Controllers
             return toReturn;
         }
 
+        private complaintsViewmodel GetStudentComplaints(string StudentNo) 
+        {
+            var toReturn = new complaintsViewmodel
+            {
+                Complaints = GetComplaints(StudentNo)
+            };
+
+            return toReturn;
+        }
+
         public ActionResult Index()
         {
-            return View();
+            return View(GetStudentComplaints(User.Identity.Name));
         }
 
         //Get
@@ -43,6 +54,7 @@ namespace Complaint_Management_System.Controllers
             try
             {
                 //save stuff from form to database
+
                 var _complaint = new Complaint { Complaint_Date = DateTime.Now, Description = model.Description,  StudentNo = User.Identity.Name };
 
                 _cmsDataDbContext.Complaints.Add(_complaint);

@@ -79,5 +79,8 @@ namespace Complaint_Management_System.Models
     }
 
 
-
+    public class ComplaintResponseViewmodel
+    {
+        public List<ComplaintResponse> ComplaintResponse { get; set; }
+    }
 }

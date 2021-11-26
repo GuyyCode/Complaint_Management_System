@@ -1,0 +1,47 @@
+﻿
+@{ ViewData["Title"] = "Home"; }
+
+<link href="~/css/HomePage.css" rel="stylesheet" />
+<link href="~/css/Anncouncments.css" rel="stylesheet" />
+
+<div class="text-center">
+    @*<h1 class="display-4">Welcome</h1>
+        <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>*@
+
+</div>
+
+
+
+
+
+<div id="ballMenuContainer">
+    <div id="menuBall1" class="menuBall">
+        <a class="ball blueball" asp-controller="Announcement" asp-action="NewAnnouncement"> <div class="menuText"> New Announcement</div></a>
+    </div>
+
+    <div id="menuBall2" class="menuBall">
+        <a href="#" class="ball redball">
+            <div class="menuText">
+              
+            </div>
+        </a>
+        <a class="ball blueball" asp-controller="Announcement" asp-action="Index"> <div class="menuText">History Of Announcement </div></a>
+
+    </div>
+
+    <div id="menuBall3" class="menuBall">
+        <a href="#" class="ball greenball">
+            <div class="menuText">
+               
+            </div>
+        </a>
+        <a class="ball blueball" asp-controller="Complain" asp-action="Index"> <div class="menuText"> View Complaints</div></a>
+
+    </div>
+
+</div>
+
+
+@*News Feed*@
+
+

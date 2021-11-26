@@ -19,6 +19,8 @@ namespace Complaint_Management_System.Models.Entities
         public string Reply_Description { get; set; }
 
         public int ComplaintID { get; set; }
+
+        public string StaffID { get; set; }
     }
 
 

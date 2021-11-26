@@ -91,11 +91,9 @@ namespace Complaint_Management_System.Controllers
 
             if (result.Succeeded)
             {
-                return RedirectToLocal(returnUrl);
-            }
 
-            else 
-            {
+                //if (roleManager) { }
+                return RedirectToLocal(returnUrl);
             }
 
             model.Success = false;
@@ -109,7 +107,7 @@ namespace Complaint_Management_System.Controllers
         public async Task<ActionResult> LogOff()
         {
             await _signInManager.SignOutAsync();
-            return RedirectToAction("Account", "Login");
+            return RedirectToAction("Login","Account");
         }
         
 

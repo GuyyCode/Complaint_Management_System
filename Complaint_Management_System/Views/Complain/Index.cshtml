@@ -1,23 +1,29 @@
 ﻿@model Complaint_Management_System.Models.complaintsViewmodel
-@{
-}
-
 
 <h2>List of Complaints</h2>
 
 
+
+
+
 <ul>
-    @if(Model != null)
+    @if (Model != null)
     {
-    @foreach (var Comp in Model.Complaints)
-    {
-        <li>
-            @Comp.Complaint_Date;
-        </li>
-        <li>
-            @Comp.Description;
-        </li>       
-    }
+        @foreach (var Comp in Model.Complaints)
+        {
+            <li>
+                @Comp.Description;
+            </li>
+            <li>
+                @Comp.Complaint_Date;
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="" asp-controller="ComplaintResponse" asp-action="Index" asp-route-data="@Comp.ComplaintID">Reply </a>
+            </li>
+
+        }
+
     }
 </ul>
 
